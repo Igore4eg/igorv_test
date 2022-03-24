@@ -1,24 +1,18 @@
 <template>
   <v-app>
-      <v-app-bar
-        absolute
-        color="light-blue lighten-3"
-        elevate-on-scroll
-        scroll-target="#scrolling-techniques-7"
-      >
-        <v-text-field :rules="rules"></v-text-field>
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-  
-      </v-app-bar>
+      <Topbar/>
+      <Body/>
   </v-app>
 </template>
 
 <script>
-
+import Topbar from "@/components/Topbar"
+import Body from "@/components/Body"
 export default {
   name: 'App',
-
+  components: {
+    Topbar,
+    Body,
+  }
 };
 </script>
