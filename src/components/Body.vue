@@ -2,7 +2,7 @@
   <v-app id="inspire" class="mt-16">
     <v-data-table
         :headers="headers"
-        :items="list"
+        :items="$store.getters.getTextField"
         :items-per-page="10"
         class="elevation-1"
     ></v-data-table>
@@ -10,34 +10,24 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
     data () {
         return {
             headers: [
                 {
-                    text: 'List jsDelivr API:',
+                    text: 'List package versions:',
                     align: 'center',
                     sortable: false,
                     value: 'name',
                 },
             ],
-            list: [],
         }
     },
     mounted() {
-        this.fetchToDo();
+        this.$store.dispatch("fetchList", this.$store.getters.getQuery)
     },
     methods: {
-        fetchToDo () {
-            axios
-                .get('https://data.jsdelivr.com/v1/package/npm/jquery')
-                .then(response => { 
-                    this.list = response.data.versions; 
-                    this.list = this.list.map((item) => ({ "name": item }))
-                })
-                .catch(error => console.log(error));
-        }
+        
     }
 }
 </script>
